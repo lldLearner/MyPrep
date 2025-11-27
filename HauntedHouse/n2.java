@@ -39,6 +39,73 @@ We want:
 “A naive solution is to try all subsets of N people, check if each subset size K satisfies L ≤ K-1 ≤ H for all members.
 
 That’s 2^N subsets → exponential → not feasible.”
+
+2️⃣ O(N²) – Range counting with a frequency array
+Idea:
+
+For each person:
+
+They support all values K in [L+1, H+1]
+
+
+Maintain:
+
+count[K] = how many people support group size K
+
+
+Then:
+
+Find max K such that count[K] ≥ K
+
+
+Pretty direct.
+
+Code snippet (your solutionTwo):
+for each person:
+    for (k = L+1; k <= H+1; k++) count[k]++
+
+🧪 Dry-run for the Example
+
+Input:
+
+6 people
+[1,2]
+[1,4]
+[0,3]
+[0,1]
+[3,4]
+[0,2]
+
+
+Let’s compute each person’s supported K range (K = number of total people):
+
+Person	L	H	Supports K from →
+P0	1	2	2 to 3
+P1	1	4	2 to 5
+P2	0	3	1 to 4
+P3	0	1	1 to 2
+P4	3	4	4 to 5
+P5	0	2	1 to 3
+
+Let’s fill count array:
+
+K=1: P2, P3, P5 → 3
+K=2: P0, P1, P2, P3, P5 → 5
+K=3: P0, P1, P2, P5 → 4
+K=4: P1, P2, P4 → 3
+K=5: P1, P4 → 2
+
+
+Now check:
+
+K=1 → 3 ≥ 1 ✔
+K=2 → 5 ≥ 2 ✔
+K=3 → 4 ≥ 3 ✔
+K=4 → 3 < 4 ✖
+K=5 → 2 < 5 ✖
+
+
+Maximum valid K = 3
   
 Q)Haunted House 
 package ParkingSpot; 
