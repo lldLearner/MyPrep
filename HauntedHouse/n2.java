@@ -130,3 +130,23 @@ public class HauntedHouse {
   } 
   return 0; 
  }
+
+
+static int solutionTwo(int n, int[][] constraints) { 
+  int[] count = new int[n + 1]; 
+  for (int i = 0; i < n; i++) { 
+   int l = constraints[i][0]; 
+   int r = constraints[i][1]; 
+   for (int k = l + 1; k <= r + 1 && k <= n; k++) { 
+    count[k]++; 
+   } 
+  } 
+  System.out.print(Arrays.toString(count)); 
+  int maxK = 0; 
+  for (int k = 1; k <= n; k++) { 
+   if (count[k] >= k) { 
+    maxK = k; 
+   } 
+  } 
+  return maxK; 
+ } 
