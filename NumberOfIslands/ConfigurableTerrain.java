@@ -39,3 +39,23 @@ public class TerrainConfigurable {
         return islandCount;
     }
 }
+
+
+package ParkingSpot;
+
+public class Main8Neighbour {
+    public static void main(String[] args) {
+
+        int[][] DIR_8 = {
+                {1,0},{-1,0},{0,1},{0,-1},
+                {1,1},{1,-1},{-1,1},{-1,-1}
+        };
+
+        TerrainConfigurable t = new TerrainConfigurable(DIR_8);
+
+        t.addLand(0,0);
+        t.addLand(1,1);
+        System.out.println(t.getIslands()); // 1 (diagonal merge)
+    }
+}
+
